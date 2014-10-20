@@ -16,13 +16,10 @@ public class Main {
 	}
 
     private static void doublePop (String[] stack){
-		int size = stack.length ;
-		boolean hasElements = size >=2 ;
-		int i = size-1;
-		while (hasElements){
+		int i = stack.length-1;
+		while (i >=0){
 			System.out.print (stack[i]+" ");
 			i = i -2 ;
-			hasElements = i >=0 ;
 		}
 
 	}
