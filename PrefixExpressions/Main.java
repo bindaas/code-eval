@@ -1,5 +1,6 @@
 import java.io.* ;
 import java.util.Stack;
+import java.text.* ;
 
 public class Main {
     public static void main (String[] args) throws Exception{
@@ -9,28 +10,29 @@ public class Main {
     while ((line = in.readLine()) != null) {
         String[] lineArray = line.split(" ");
         if (lineArray.length > 0) {
-			Number result = calculate (lineArray);
-			System.out.println(result);
+			Double result = calculate (lineArray);
+			DecimalFormat df = new DecimalFormat("#.##");
+			System.out.println(df.format(result.doubleValue()));
         }
     }
   }
 
-  private static Number calculate (String [] expression){
+  private static Double calculate (String [] expression){
   	Stack expressionStack = new Stack ();
   	int i = expression.length -1;
   	do{
 		if (isNumeric(expression[i])){
 			expressionStack.push (new Double(expression[i]));
 		}else{
-			Number operand1 = (Number)expressionStack.pop ();
-			Number operand2 = (Number)expressionStack.pop ();
-			Number result = compute(expression[i],operand1,operand2);
+			Double operand1 = (Double)expressionStack.pop ();
+			Double operand2 = (Double)expressionStack.pop ();
+			Double result = compute(expression[i],operand1,operand2);
 			expressionStack.push (result);
 		}
 		i--;
 
 	}while ((expressionStack.size()>0) && (i >-1));
-	return (Number)expressionStack.pop ();
+	return (Double)expressionStack.pop ();
   }
 
 
@@ -47,7 +49,7 @@ public class Main {
 	  return true;
   }
 
-private static Number compute (String operator , Number operand1, Number operand2){
+private static Double compute (String operator , Double operand1, Double operand2){
 	if ("+".equals(operator)){
 		return (Double)operand1 + (Double)operand2 ;
 	}else if ("-".equals(operator)){
