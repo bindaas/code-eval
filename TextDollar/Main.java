@@ -27,6 +27,7 @@ public class Main {
 
 
   private static String convertDigit (char c , int place){
+	  System.out.println("place->"+place +" c->"+c );
 	  if (c =='1'){
 		  return "One";
       }
