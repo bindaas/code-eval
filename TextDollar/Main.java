@@ -19,7 +19,7 @@ public class Main {
   	if ("0".equals(amount)) return "Zero" ;
   	String convertedText ="";
   	int length = amount.length();
-	System.out.println("convertIntoTextDollars:amount->"+amount);
+	//System.out.println("convertIntoTextDollars:amount->"+amount);
 
   	if (length > 9){
 		throw new RuntimeException ("Not implemented yet->"+amount);
@@ -34,7 +34,7 @@ public class Main {
 
 
   private static String convertHundreds (String amount, String suffix ){
-	  System.out.println("convertHundreds:amount->"+amount);
+	  //System.out.println("convertHundreds:amount->"+amount);
 	  int length = amount.length ();
 	  switch (length){
 	 	case 1: return convertOnes(amount.charAt(0)) + ((amount.charAt(0)=='0')?"":suffix);
@@ -64,7 +64,7 @@ public class Main {
 	switch (u){
 		case '0' : return "Ten";
 		case '1' : return "Eleven";
-		case '2' : return "Tweleve";
+		case '2' : return "Twelve";
 		case '3' : return "Thirteen";
 		case '4' : return "Forteen";
 		case '5' : return "Fifteen";
