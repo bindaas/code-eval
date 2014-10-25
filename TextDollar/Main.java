@@ -39,7 +39,7 @@ public class Main {
 	  switch (length){
 	 	case 1: return convertOnes(amount.charAt(0)) + ((amount.charAt(0)=='0')?"":suffix);
 	 	case 2: return convertUnitTens(amount.charAt(0),amount.charAt(1)) + (((amount.charAt(0)=='0')&&(amount.charAt(1)=='0'))?"":suffix);
-	 	case 3: return convertOnes(amount.charAt(0)) +((amount.charAt(0)=='0')?"":"Hundred")+ convertUnitTens(amount.charAt(1),amount.charAt(2)) + suffix;
+	 	case 3: return convertOnes(amount.charAt(0)) +((amount.charAt(0)=='0')?"":"Hundred")+ convertUnitTens(amount.charAt(1),amount.charAt(2)) + (((amount.charAt(0)=='0')&&(amount.charAt(1)=='0')&&(amount.charAt(2)=='0'))?"":suffix);
 
 	 	default: throw new RuntimeException ("Unexpected length");
 	  }
