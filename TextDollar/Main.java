@@ -24,8 +24,8 @@ public class Main {
   	if (length > 9){
 		throw new RuntimeException ("Not implemented yet->"+amount);
 	}else if (length > 6){
-		return convertHundreds(amount.substring(0,length-6),"Million")+convertHundreds(amount.substring(length-6,length-4),"Thousand");
-		//+convertHundreds(amount.substring(length-3,length-1),"");
+		return convertHundreds(amount.substring(0,length-6),"Million")+convertHundreds(amount.substring(length-6,length-3),"Thousand")
+			+convertHundreds(amount.substring(length-3,length),"");
 	}else if (length > 3){
 		return convertHundreds(amount.substring(0,length-3),"Thousand")+convertHundreds(amount.substring(length-3,length),"");
 	}
@@ -66,7 +66,7 @@ public class Main {
 		case '1' : return "Eleven";
 		case '2' : return "Twelve";
 		case '3' : return "Thirteen";
-		case '4' : return "Forteen";
+		case '4' : return "Fourteen";
 		case '5' : return "Fifteen";
 		case '6' : return "Sixteen";
 		case '7' : return "Seventeen";
