@@ -9,7 +9,7 @@ public class Main {
     while ((line = in.readLine()) != null) {
         String[] lineArray = line.split(" ");
         if (lineArray.length > 0) {
-			System.out.println("line->"+line+" countUglyNumbers:"+countUglyNumbers(line));
+			System.out.println("line->"+line+" isUglyNumber:"+isUglyNumber(new Integer(line).intValue()));
         }
     }
   }
