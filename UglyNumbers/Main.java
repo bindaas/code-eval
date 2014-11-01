@@ -33,17 +33,6 @@ public class Main {
   	return new ArrayList<String> (0);
   }
 
-  private static int calculateExpression (Stack expression){
-	  int value = 0 ;
-	  while (true){
-		if (expression.size() ==0){
-			break;
-		}
-		String element = (String)expression.pop ();
-	  }
-  	  return value ;
-  }
-
 
   private static String addPlusSign (String expression){
   	if ((expression.charAt(0)>='0')&& (expression.charAt(0)<='9')){
