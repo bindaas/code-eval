@@ -7,31 +7,77 @@ public class Main {
     BufferedReader in = new BufferedReader(new FileReader(file));
     String line;
     while ((line = in.readLine()) != null) {
-			String expression = addPlusSign(line);
-			Node root  = createNode(expression);
-			int value = calculateNode (root);
-			System.out.println("expression->"+expression+" value->"+value);
+			List<String>combinations = new ArrayList<String> ();
+			generateCombinations (combinations,1,line);
+			System.out.println("combinations->"+combinations);
+			//String expression = addPlusSign(line);
+			//Node root  = createNode(expression);
+			//int value = calculateNode (root);
+			//System.out.println("expression->"+expression+" value->"+value);
 
     }
   }
 
 
-  private static int countUglyNumbers(String number){
-	int count = 0;
-	List<String> expressions = generateExpressions (number);
-	for (String expression:expressions){
-		int value = calculateExpression (new Stack());
-		if (isUglyNumber(value)){
-			count++;
+
+  private static void generateCombinations (List<String>combinations ,int i ,String number){
+	  if (number.length()== 0){
+		return  ;
+	  }
+	  char c = number.charAt(0);
+	  String aCombo = null;
+	  if ((1 % 3)==0){
+		  aCombo= "+"+c+generateCombinations (combinations ,++i,number.substring(1));
+		  System.out.println ("3:"+aCombo);
+		  combinations.add (aCombo);
+		  return aCombo;
+	  }
+	  else if ((1 % 2)==0){
+		  aCombo= "-"+c+generateCombinations (combinations ,++i,number.substring(1));
+		  System.out.println ("2:"+aCombo);
+		  combinations.add (aCombo);
+		  return aCombo;
+	  }
+	  else{
+		  aCombo= ""+c+generateCombinations (combinations ,++i,number.substring(1));
+		  System.out.println ("1:"+aCombo);
+		  combinations.add (aCombo);
+		  return aCombo;
+	  }
+  }
+
+  private static String getCombo (char c , int counter){
+		if (counter==0){
+			return ""+ c;
+		}else if (counter==1){
+			return "+"+ c;
+		}else{
+			return "-"+ c;
 		}
+  }
+
+
+  private static List<String> generateCombinations (String number){
+	List combinations = new ArrayList<ArrayList<String>>();
+	char[] digits = number.toCharArray();
+
+	String combination = ""+digits[0];
+	for (int i = 1 ; i < digits.length ; ++i){
+
+		for (int j = 0 ; j < 1 ;++j){
+			if (j==0){
+				combination += digits[i];
+			}else if (j==1){
+				combination += "+"+digits[i];
+			}else{
+				combination += "-"+digits[i];
+			}
+		}
+		}
+		System.out.println ("Combination :"+combination);
+
+	return combinations;
 	}
-	return count ;
-  }
-
-
-  private static List <String> generateExpressions (String number){
-  	return new ArrayList<String> (0);
-  }
 
 
   private static String addPlusSign (String expression){
