@@ -1,4 +1,5 @@
 import java.io.* ;
+import java.util.* ;
 
 public class Main {
     public static void main (String[] args) throws Exception{
@@ -8,26 +9,28 @@ public class Main {
     while ((line = in.readLine()) != null) {
         String[] lineArray = line.split(",");
         if (lineArray.length > 0) {
-			System.out.println (replaceCharacters(lineArray[0],lineArray[1].trim()));
+			System.out.println (remove(lineArray[0],lineArray[1].trim()));
         }
     }
   }
 
-	private static String replaceCharacters(String text , String replace){
-		for (int i = 0 ; i < replace.length() ;i++){
-			char c = replace.charAt(i);
-			String [] splitStrings = text.split(c+"");
-			text= concat(splitStrings);
+
+	private static String remove(String text , String removableText){
+		char[] textChar = text.toCharArray();
+		char[] newText = new char[textChar.length];
+		int j = 0 ;
+
+		for (int i = 0 ; i < textChar.length ;++i){
+			if (!shouldBeRemoved (textChar[i] ,removableText  )){
+				newText[j]=textChar[i];
+				j++ ;
+			}
 		}
-		return text ;
+		return new String(newText).trim() ;
 	}
 
-	private static String concat(String [] splitStrings){
-		String rebuild ="";
-		for (int i = 0 ; i<splitStrings.length ;++i ){
-			rebuild += splitStrings[i];
-		}
-		return rebuild ;
+	private static boolean shouldBeRemoved (char c ,String removableText  ){
+		return removableText.contains(c+"") ;
 	}
 
 
