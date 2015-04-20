@@ -12,6 +12,8 @@ public class Main {
 			List<Boolean>cellsRow = parseCells(line);
 			matrix.add (cellsRow);
     }
+    		System.out.println ();
+    printMatrix(matrix);
 
   }
 
@@ -26,11 +28,19 @@ public class Main {
   }
 
 
-   private void runGenerations(List <List<Boolean>> matrix, int count){
-
+   private void runGenerations(List <List<Boolean>> seedMatrix, int count){
+		List <List<Boolean>> newMatrix = transformMatrix (seedMatrix);
+		printMatrix(newMatrix);
    }
 
-   private void printMatrix (List <List<Boolean>> matrix){
+   private static void printMatrix (List <List<Boolean>> matrix){
+	   for (List<Boolean>rows :matrix){
+	   		for (Boolean cell:rows){
+				String cellContents=(cell)?"*":".";
+				System.out.print(cellContents);
+			}
+			System.out.println();
+	   }
 
    }
 
@@ -38,8 +48,21 @@ public class Main {
    		return null ;
    }
 
-  private List<Boolean> getNeighbours (int row,int col,List <List<Boolean>> matrix){
-	  return null ;
+  private static List<Boolean> getNeighbours (int row,int col,List <List<Boolean>> matrix){
+	  Boolean top = null,bottom = null,left = null,right = null ;
+	  List<Boolean> neighbours = new ArrayList<Boolean> (4);
+
+	  if (row == 0){
+	  	top = new Boolean (false);
+	  }else{
+
+	  }
+
+	  neighbours.add(top);
+	  neighbours.add(bottom);
+	  neighbours.add(left);
+	  neighbours.add(right);
+	  return neighbours ;
   }
 
   private Boolean transformCell (Boolean currentState,List<Boolean> neighbours){
