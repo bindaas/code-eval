@@ -3,7 +3,7 @@ import java.util.* ;
 
 public class Main {
 
-	static int NO_OF_GENERATIONS = 1;
+	static int NO_OF_GENERATIONS = 10;
 	static int ROW = 100 ;
 	static int COL = 100 ;
 
@@ -17,7 +17,10 @@ public class Main {
 			Boolean[]cellsRow = parseCells(line);
 			matrix[i++]= cellsRow;
     }
-    runGenerations (matrix,NO_OF_GENERATIONS);
+    //printMatrix(matrix);
+    //System.out.println();
+    Boolean[][] newMatrix =runGenerations (matrix,NO_OF_GENERATIONS);
+    printMatrix(newMatrix);
 
   }
 
@@ -26,7 +29,7 @@ public class Main {
 		char[] charArray = line.toCharArray();
 		int i = 0;
 		for (char c :charArray){
-			Boolean isAlive = (c=='*')?new Boolean (true):new Boolean (false);
+			Boolean isAlive = (c=='*')?new Boolean (true):Boolean.FALSE;
 			cells[i++]=isAlive;
 		}
 		return cells ;
@@ -47,53 +50,53 @@ public class Main {
 	  Boolean top = null,bottom = null,left = null,right = null ;
 	  Boolean topLeft = null,topRight = null,bottomLeft = null,bottomRight = null ;
 
-	  List<Boolean> neighbours = new ArrayList<Boolean> (4);
+	  List<Boolean> neighbours = new ArrayList<Boolean> (8);
 
 	  if (row == 0){
-	  	top = new Boolean (false);
+	  	top = Boolean.FALSE;
 	  }else{
 		top=matrix[row-1][col];
 	  }
 
 	  if (row == matrix[0].length-1){
-	  	bottom = new Boolean (false);
+	  	bottom = Boolean.FALSE;
 	  }else{
 		bottom=matrix[row+1][col];
 	  }
 
 	  if (col == 0){
-	  	left = new Boolean (false);
+	  	left = Boolean.FALSE;
 	  }else{
 		left=matrix[row][col-1];
 	  }
 
 	  if (col == matrix.length-1){
-	  	right = new Boolean (false);
+	  	right = Boolean.FALSE;
 	  }else{
 		right=matrix[row][col+1];
 	  }
 
 
 	  if ((row == 0)||(col == 0)){
-	  	topLeft = new Boolean (false);
+	  	topLeft = Boolean.FALSE;
 	  }else {
 		topLeft=matrix[row-1][col-1];
 	  }
 
 	  if ((row == 0)||(col == matrix.length-1)){
-	  	topRight = new Boolean (false);
+	  	topRight = Boolean.FALSE;
 	  }else {
 		topRight=matrix[row-1][col+1];
 	  }
 
 	  if ((row == matrix[0].length-1)||(col == 0)){
-	  	bottomLeft = new Boolean (false);
+	  	bottomLeft = Boolean.FALSE;
 	  }else {
 		bottomLeft=matrix[row+1][col-1];
 	  }
 
 	  if ((row == matrix[0].length-1)||(col == matrix.length-1)){
-	  	bottomRight = new Boolean (false);
+	  	bottomRight = Boolean.FALSE;
 	  }else{
 		bottomRight = matrix[row+1][col+1];
 	  }
@@ -143,15 +146,13 @@ public class Main {
    }
 
 
-   private static void runGenerations(Boolean[][] seedMatrix, int count){
-		printMatrix(seedMatrix);
-		System.out.println();
+   private static Boolean[][] runGenerations(Boolean[][] seedMatrix, int count){
 		Boolean[][] newMatrix = null ;
 		for (int i = 0 ; i < count;i++){
 			newMatrix = transformMatrix (seedMatrix);
 			seedMatrix = newMatrix ;
 		}
 
-		printMatrix(newMatrix);
+		return newMatrix;
    }
 }
