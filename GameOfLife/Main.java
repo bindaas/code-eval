@@ -18,7 +18,7 @@ public class Main {
 			matrix[i++]= cellsRow;
     }
     //printMatrix(matrix);
-    //System.out.println();
+    System.out.println();
     Boolean[][] newMatrix =runGenerations (matrix,NO_OF_GENERATIONS);
     printMatrix(newMatrix);
 
@@ -29,8 +29,7 @@ public class Main {
 		char[] charArray = line.toCharArray();
 		int i = 0;
 		for (char c :charArray){
-			Boolean isAlive = (c=='*')?new Boolean (true):Boolean.FALSE;
-			cells[i++]=isAlive;
+			cells[i++] = (c=='*')?Boolean.TRUE:Boolean.FALSE;
 		}
 		return cells ;
   }
@@ -43,7 +42,6 @@ public class Main {
 			}
 			System.out.println();
 	   }
-
    }
 
   private static List<Boolean> getNeighbours (int row,int col,Boolean[][] matrix){
@@ -140,6 +138,7 @@ public class Main {
 	   for (int r = 0; r < matrix[0].length; r++){
 	   		for (int c = 0;c < matrix.length; c++){
 				newGeneration[r][c]= transformCell (r,c,matrix);
+				//newGeneration[r][c]= matrix[r][c];
 			}
 		}
    	   return newGeneration ;
@@ -152,7 +151,6 @@ public class Main {
 			newMatrix = transformMatrix (seedMatrix);
 			seedMatrix = newMatrix ;
 		}
-
 		return newMatrix;
    }
 }
