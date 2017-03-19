@@ -12,7 +12,11 @@ public class Main {
 
   private static void stringPermutations (String word){
 			System.out.println (word);
-
   }
 
+    private static List<String> permutations (String word){
+			return new List<String> ();
+  }
+
+  
 }
